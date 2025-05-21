@@ -1,0 +1,38 @@
+{
+  "name": "zuno-marketplace",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.19",
+    "@heroicons/react": "^2.2.0",
+    "@tailwindcss/forms": "^0.5.10",
+    "@types/axios": "^0.14.4",
+    "axios": "^1.9.0",
+    "clsx": "^2.1.1",
+    "next": "14.1.0",
+    "openpgp": "^5.11.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.3.8",
+    "react-hot-toast": "^2.5.2",
+    "react-query": "^3.39.3",
+    "tailwindcss": "^3.4.17",
+    "zod": "^3.25.17"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.50",
+    "@types/react": "^18.3.22",
+    "@types/react-dom": "^18.3.7",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.1.0",
+    "postcss": "^8.5.3",
+    "typescript": "^5.8.3"
+  }
+}
