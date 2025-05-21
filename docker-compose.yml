@@ -1,0 +1,50 @@
+version: '3.8'
+services:
+  tor:
+    image: alpine:latest
+    container_name: tor_service
+    volumes:
+      - ./tor/torrc:/etc/tor/torrc
+      - tor_data:/var/lib/tor
+    ports:
+      - "9050:9050"
+    command: tor -f /etc/tor/torrc
+
+  backend:
+    build: ./backend
+    container_name: backend
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/zuno_db
+    volumes:
+      - backend_data:/app/data
+      - ./tor/:/var/lib/tor
+    depends_on:
+      - tor
+      - db
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=http://backend:8000/api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:14
+    container_name: postgres_db
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=zuno_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  tor_data:
+  backend_data:
+  postgres_data:
